@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>MangoMax</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>MangoMax</artifactId>
+	<version>0.1</version>
 	<packaging>jar</packaging>
 
 	<name>MangoMax</name>
-	<description>Demo project for Spring Boot</description>
+	<description>XP-project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -50,6 +50,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
