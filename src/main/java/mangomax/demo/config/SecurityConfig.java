@@ -62,6 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // password = $2a$10$GkHRhh4AHWS.WHUzRucUIeBoEmowH7qZ2HLVas544VbXFscstpEE6
+        // TODO: Ret SQL
         auth.jdbcAuthentication().dataSource(dataSource)
                 .authoritiesByUsernameQuery("select username, role FROM users where username=?")
                 .usersByUsernameQuery("select username,password as password,1 FROM users where username=?")
