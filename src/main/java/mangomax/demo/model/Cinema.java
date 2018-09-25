@@ -15,7 +15,6 @@ public class Cinema {
     public int getCinemaId() {
         return cinemaId;
     }
-
     public void setCinemaId(int cinemaId) {
         this.cinemaId = cinemaId;
     }
@@ -23,7 +22,6 @@ public class Cinema {
     public String getCinemaName() {
         return cinemaName;
     }
-
     public void setCinemaName(String cinemaName) {
         this.cinemaName = cinemaName;
     }
@@ -31,7 +29,6 @@ public class Cinema {
     public int getCinemaSeats() {
         return cinemaSeats;
     }
-
     public void setCinemaSeats(int cinemaSeats) {
         this.cinemaSeats = cinemaSeats;
     }

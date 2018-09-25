@@ -4,18 +4,17 @@ public class Order {
 
     private int orderId;
     private int orderTotal;
-    private int fkReservationId;
+    private Reservation reservation;
 
-    public Order(int orderId, int orderTotal, int fkReservationId) {
+    public Order(int orderId, int orderTotal, Reservation reservation) {
         this.orderId = orderId;
         this.orderTotal = orderTotal;
-        this.fkReservationId = fkReservationId;
+        this.reservation = reservation;
     }
 
     public int getOrderId() {
         return orderId;
     }
-
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
@@ -23,16 +22,14 @@ public class Order {
     public int getOrderTotal() {
         return orderTotal;
     }
-
     public void setOrderTotal(int orderTotal) {
         this.orderTotal = orderTotal;
     }
 
-    public int getFkReservationId() {
-        return fkReservationId;
+    public Reservation getReservation() {
+        return reservation;
     }
-
-    public void setFkReservationId(int fkReservationId) {
-        this.fkReservationId = fkReservationId;
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }
