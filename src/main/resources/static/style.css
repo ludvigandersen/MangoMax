@@ -7,11 +7,8 @@
 
 
 .grad {
-<<<<<<< HEAD
     height: 700px;
     width: 500px;
-=======
->>>>>>> 7197a973657681d0532ea2b0044b58a7754c3404
     background-color: red; /* For browsers that do not support gradients */
     background-image: radial-gradient(#F3D126,#8E0B0B); /* Standard syntax (must be last) */
 
