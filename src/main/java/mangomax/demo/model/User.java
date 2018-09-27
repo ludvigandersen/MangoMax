@@ -5,12 +5,12 @@ public class User {
     private int userId;
     private String userName;
     private String userMail;
-    private int userPhoneNumber;
+    private String userPhoneNumber;
     private String userPassword;
-    private String fkRoleId;
+    private int fkRoleId;
 
     public User(int userId, String userName, String userMail,
-                int userPhoneNumber, String userPassword, String fkRoleId) {
+                String userPhoneNumber, String userPassword, int fkRoleId) {
         this.userId = userId;
         this.userName = userName;
         this.userMail = userMail;
@@ -40,10 +40,10 @@ public class User {
         this.userMail = userMail;
     }
 
-    public int getUserPhoneNumber() {
+    public String getUserPhoneNumber() {
         return userPhoneNumber;
     }
-    public void setUserPhoneNumber(int userPhoneNumber) {
+    public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
     }
 
@@ -54,10 +54,10 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getFkRoleId() {
+    public int getFkRoleId() {
         return fkRoleId;
     }
-    public void setFkRoleId(String fkRoleId) {
+    public void setFkRoleId(int fkRoleId) {
         this.fkRoleId = fkRoleId;
     }
 }

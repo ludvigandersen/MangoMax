@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Movies</title>
@@ -14,14 +14,19 @@
 
         <thead>
             <tr>
-                <th>Film img</th>
                 <th>Film</th>
                 <th>Dato</th>
                 <th>Detaljer</th>
                 <th>Reservér</th>
             </tr>
         </thead>
+                <tr th:each="movies : ${movie_data}">
+                    <td th:text="${movies}"></td>
+                    <td></td>
+                    <td></td>
 
+
+                </tr>
 
         <tbody>
 
