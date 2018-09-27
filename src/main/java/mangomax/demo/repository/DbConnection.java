@@ -105,6 +105,7 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public List<Movie> getAllMovies() {
+
         return null;
     }
 
