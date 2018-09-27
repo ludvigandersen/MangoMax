@@ -30,6 +30,7 @@ public interface IDbRepository {
     void createMovie(Movie movie);
     List<Movie> getAllMovies();
     Movie getMovieById(int movieId);
+    List<Movie> getMoviesOneWeekFromNow();
     void updateMovie(int movieId, Movie movie);
     void deleteMovie(int movieId);
 

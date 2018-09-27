@@ -110,6 +110,11 @@ public class DbConnection implements IDbRepository {
     }
 
     @Override
+    public List<Movie> getMoviesOneWeekFromNow() {
+        return null;
+    }
+
+    @Override
     public void updateMovie(int movieId, Movie movie) {
 
     }
