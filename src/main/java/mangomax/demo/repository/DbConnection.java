@@ -152,7 +152,7 @@ public class DbConnection implements IDbRepository {
                     sqlRowSet.getString("movie_description"),
                     sqlRowSet.getInt("price"),
                     sqlRowSet.getInt("age"),
-                    sqlRowSet.getDate("movie_date"),
+                    sqlRowSet.getTimestamp("movie_date"),
                     new Cinema(sqlRowSet.getInt("cinema_id"),
                             sqlRowSet.getString("cinemas"),
                             sqlRowSet.getInt("cinemas_seats"))
