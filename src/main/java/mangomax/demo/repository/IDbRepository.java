@@ -8,7 +8,7 @@ import org.springframework.security.access.method.P;
 
 import java.util.List;
 
-public interface IDbRepository {
+public interface  IDbRepository {
     boolean test();
 
     // TODO: role objekt + getAllRoles and id's

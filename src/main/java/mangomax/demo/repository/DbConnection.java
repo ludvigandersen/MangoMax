@@ -26,11 +26,11 @@ public class DbConnection implements IDbRepository {
         String sql = "SELECT * FROM test_table";
         sqlRowSet = jdbc.queryForRowSet(sql);
 
-        while (sqlRowSet.next()){
+        while (sqlRowSet.next()) {
             test.add(sqlRowSet.getString("value"));
         }
 
-        if (test.size() > 0){
+        if (test.size() > 0) {
             return true;
         }
         return false;
@@ -41,11 +41,11 @@ public class DbConnection implements IDbRepository {
         jdbc.update("INSERT INTO user (user_name ,user_email, user_phone, user_password, userRole_fk) " +
                         "VALUES (?,?,?,?,?)",
                 new Object[]{
-                    user.getUserName(),
-                    user.getUserMail(),
-                    user.getUserPhoneNumber(),
-                    user.getUserPassword(),
-                    roleId
+                        user.getUserName(),
+                        user.getUserMail(),
+                        user.getUserPhoneNumber(),
+                        user.getUserPassword(),
+                        roleId
                 });
     }
 
@@ -77,11 +77,16 @@ public class DbConnection implements IDbRepository {
     public void deleteUser(int userId) {
         //jdbc.update("DELETE FROM ballonkompagniet.products WHERE ballonkompagniet.products.productNumber = ?", id);
 
+
     }
 
     @Override
     public void createCinema(Cinema cinema) {
-
+            jdbc.update("INSERT into mangomax.cinemas (cinemas, cinemas_seats) VALUES (?,?)",
+            new Object[] {
+                    cinema.getCinemaName(),
+                    cinema.getCinemaSeats(),
+            });
     }
 
     @Override
@@ -106,7 +111,17 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createMovie(Movie movie) {
+        jdbc.update("INSERT into mangomax.movies (movie_name, movie_description, price, age, moviesCinemas_fk)" +
+                        " VALUES (?,?,?,?,?)",
+                new Object[]{
+                        movie.getMovieName(),
+                        movie.getMovieDescription(),
+                        movie.getMoviePrice(),
+                        movie.getMoviePrice(),
+                        movie.getMovieAgeLimit(),
+                        movie.getCinema().getCinemaId(),
 
+                });
     }
 
     @Override
@@ -145,7 +160,13 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createProduct(Product product) {
+               jdbc.update("INSERT INTO mangomax.products (products_name, products_price, products_description) VALUES (?,?,?)",
+                new Object[]{
+                        product.getProductName(),
+                        product.getProductPrice(),
+                        product.getProductDescription(),
 
+                });
     }
 
     @Override

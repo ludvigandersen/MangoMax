@@ -29,28 +29,30 @@ public class User {
     public String getUserName() {
         return userName;
     }
-    public void setUserName(String userName) {
+    public void setUserName() {
         this.userName = userName;
     }
 
     public String getUserMail() {
         return userMail;
     }
-    public void setUserMail(String userMail) {
+    public void setUserMail() {
         this.userMail = userMail;
     }
 
     public String getUserPhoneNumber() {
         return userPhoneNumber;
     }
+
     public void setUserPhoneNumber(String userPhoneNumber) {
+
         this.userPhoneNumber = userPhoneNumber;
     }
 
     public String getUserPassword() {
         return userPassword;
     }
-    public void setUserPassword(String userPassword) {
+    public void setUserPassword() {
         this.userPassword = userPassword;
     }
 
