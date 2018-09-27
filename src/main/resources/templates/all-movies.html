@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Movies</title>
+    <link rel="stylesheet" href="style.css">
 
 
 </head>
-<body>
 
+<body class = "grad">
+<div class="container">
     <h1>Film i MangoMax</h1>
 
     <table>
@@ -26,7 +28,7 @@
             <tr th:each="movie : ${movie_data}">
                 <td th:text="${movie.movieName}"></td>
                 <td th:text="${movie.movieDate}"></td>
-                <td><a href="details.html">Detaljer</a></td>
+                <td><a th:href="${'/details?id=' + movie.movieId}">Detaljer</a></td>
                 <td><a href="reserve-movies.html">Reservér plads</a></td>
                 <!-- TODO: Detaljer skal gå efter movieID -->
             </tr>
@@ -35,6 +37,7 @@
 
 
     </table>
-
+    </div>
 </body>
+
 </html>

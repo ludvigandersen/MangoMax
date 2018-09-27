@@ -1,6 +1,21 @@
+*{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+
 .grad {
-    height: 150px;
-    width: 200px;
+    height: 700px;
+    width: 500px;
     background-color: red; /* For browsers that do not support gradients */
-    background-image: radial-gradient(#C33D3D, #F3D126); /* Standard syntax (must be last) */
+    background-image: radial-gradient(#F3D126,#8E0B0B); /* Standard syntax (must be last) */
+
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+
 }
