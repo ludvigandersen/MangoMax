@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
+<body class="grad">
 
 <h1>Detaljer</h1>
+<<<<<<< HEAD
 <p th:text="'Film: ' + movie.movieName}"/>
 <p th:text="'Beskrivelse: ' + ${movie.movieDescription}"/>
 <p th:text="'Filmen koster ' + ${movie.moviePrice}"/>
 <p th:text="'Filmen kræver at du er mindst  ' + ${movie.movieAgeLimit}"/>
 <p th:text="'Filmen vises i sal ' + ${movie.cinema.cinemaName}"/>
+=======
+<p th:text="'Film: ' + ${movie.getMovieName()}"/>
+<p th:text="'Beskrivelse: ' + ${movie.getMovieDescription()}"/>
+<p th:text="'Filmen koster ' + ${movie.getMoviePrice() + 'kr.'}"/>
+<p th:text="'Filmen kræver at du er mindst  ' + ${movie.getMovieAgeLimit()}"/>
+<p th:text="'Filmen vises i sal ' + ${movie.getCinema().getCinemaName()}"/>
+>>>>>>> 7197a973657681d0532ea2b0044b58a7754c3404
 
 </body>
 </html>
