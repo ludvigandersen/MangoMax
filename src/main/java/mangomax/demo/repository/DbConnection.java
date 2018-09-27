@@ -180,9 +180,6 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public Movie getMovieById(int movieId) {
-<<<<<<< HEAD
-        
-=======
 
         sqlRowSet = jdbc.queryForRowSet("SELECT movie_dates.movie_date, movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
                         "FROM movie_dates\n" +
@@ -203,7 +200,6 @@ public class DbConnection implements IDbRepository {
                             sqlRowSet.getString("cinemas"),
                             sqlRowSet.getInt("cinemas_seats")));
         }
->>>>>>> 7197a973657681d0532ea2b0044b58a7754c3404
         return null;
     }
 
