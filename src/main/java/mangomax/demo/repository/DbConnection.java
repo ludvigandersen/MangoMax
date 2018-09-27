@@ -61,11 +61,21 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void updateUser(int userId, User user) {
-
+//        jdbc.update("UPDATE products " +
+//                        "SET productName=?, productPurchasePrice=?, " +
+//                        "productSalesPrice=?, productBarcodeNumber=?, productDescription=?, " +
+//                        "productLocationId=?, productsInStock=? " +
+//                        "WHERE productId=?",
+//                new Object[]{
+//                        product.getProductName(), product.getPurchasePrice(),
+//                        product.getSalesPrice(), product.getProductBarcode(), product.getProductDescription(),
+//                        product.getProductLocation(), product.getProductsInStock(), product.getProductId()
+//                });
     }
 
     @Override
     public void deleteUser(int userId) {
+        //jdbc.update("DELETE FROM ballonkompagniet.products WHERE ballonkompagniet.products.productNumber = ?", id);
 
     }
 
@@ -111,6 +121,15 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public List<Movie> getMoviesOneWeekFromNow() {
+//        String sql = "SELECT * FROM movies ";
+//        sqlRowSet = jdbc.queryForRowSet(sql);
+//        List<Movie> movies = new ArrayList<>();
+//
+//        while (sqlRowSet.next()){
+//            return new Movie(
+//                    sqlRowSet.getInt("movie_id"),
+//            );
+//        }
         return null;
     }
 
