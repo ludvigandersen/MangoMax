@@ -141,7 +141,7 @@ public class DbConnection implements IDbRepository {
                 "FROM movie_dates\n" +
                 "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
                 "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
-                "WHERE movie_dates.movie_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 7 DAY)";
+                "WHERE movie_dates.movie_date BETWEEN NOW() AND NOW() + INTERVAL 7 DAY";
         sqlRowSet = jdbc.queryForRowSet(sql);
         List<Movie> movies = new ArrayList<>();
 
