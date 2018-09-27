@@ -10,10 +10,10 @@ public class Movie {
     private String movieDescription;
     private int moviePrice;
     private int movieAgeLimit;
-    private LocalDateTime movieDate;
+    private Date movieDate;
     private Cinema cinema;
 
-    public Movie(int movieId, String movieName, String movieDescription, int moviePrice, int movieAgeLimit, LocalDateTime movieDate, Cinema cinema) {
+    public Movie(int movieId, String movieName, String movieDescription, int moviePrice, int movieAgeLimit, Date movieDate, Cinema cinema) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieDescription = movieDescription;
@@ -65,10 +65,10 @@ public class Movie {
         this.cinema = cinema;
     }
 
-    public LocalDateTime getMovieDate() {
+    public Date getMovieDate() {
         return movieDate;
     }
-    public void setMovieDate(LocalDateTime movieDate) {
+    public void setMovieDate(Date movieDate) {
         this.movieDate = movieDate;
     }
 }
