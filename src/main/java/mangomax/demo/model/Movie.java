@@ -1,5 +1,7 @@
 package mangomax.demo.model;
 
+import java.time.LocalDateTime;
+
 public class Movie {
 
     private int movieId;
@@ -7,15 +9,16 @@ public class Movie {
     private String movieDescription;
     private int moviePrice;
     private int movieAgeLimit;
+    private LocalDateTime movieDate;
     private Cinema cinema;
 
-    public Movie(int movieId, String movieName, String movieDescription,
-                 int moviePrice, int movieAgeLimit, Cinema cinema) {
+    public Movie(int movieId, String movieName, String movieDescription, int moviePrice, int movieAgeLimit, LocalDateTime movieDate, Cinema cinema) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.movieDescription = movieDescription;
         this.moviePrice = moviePrice;
         this.movieAgeLimit = movieAgeLimit;
+        this.movieDate = movieDate;
         this.cinema = cinema;
     }
 
@@ -59,5 +62,12 @@ public class Movie {
     }
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
+    }
+
+    public LocalDateTime getMovieDate() {
+        return movieDate;
+    }
+    public void setMovieDate(LocalDateTime movieDate) {
+        this.movieDate = movieDate;
     }
 }
