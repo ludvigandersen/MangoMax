@@ -20,16 +20,16 @@
                 <th>Reservér</th>
             </tr>
         </thead>
-                <tr th:each="movies : ${movie_data}">
-                    <td th:text="${movies}"></td>
-                    <td></td>
-                    <td></td>
-
-
-                </tr>
 
         <tbody>
 
+            <tr th:each="movie : ${movie_data}">
+                <td th:text="${movie.movieName}"></td>
+                <td th:text="${movie.movieDate}"></td>
+                <td><a href="details.html">Detaljer</a></td>
+                <td><a href="reserve-movies.html">Reservér plads</a></td>
+                <!-- TODO: Detaljer skal gå efter movieID -->
+            </tr>
 
         </tbody>
 

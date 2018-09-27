@@ -57,7 +57,19 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public User getUserById(int userId) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE user_id=?", userId);
+
+        while (sqlRowSet.next()) {
+            return new User(
+                    sqlRowSet.getInt("user_id"),
+                    sqlRowSet.getString("user_name"),
+                    sqlRowSet.getString("user_email"),
+                    sqlRowSet.getString("user_phone"),
+                    sqlRowSet.getString("user_password"),
+                    sqlRowSet.getInt("userRole_fk"));
+        }
         return null;
+
     }
 
     @Override
@@ -133,6 +145,26 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public Movie getMovieById(int movieId) {
+
+        sqlRowSet = jdbc.queryForRowSet("SELECT movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
+                        "FROM movie_dates\n" +
+                        "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
+                        "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
+                "WHERE movie_id=?", movieId);
+
+
+        while (sqlRowSet.next()) {
+            return new Movie(
+                    sqlRowSet.getInt("movie_id"),
+                    sqlRowSet.getString("movie_name"),
+                    sqlRowSet.getString("movie_description"),
+                    sqlRowSet.getInt("price"),
+                    sqlRowSet.getInt("age"),
+                    sqlRowSet.getDate("movie_date"),
+                    new Cinema(sqlRowSet.getInt("cinema_id"),
+                            sqlRowSet.getString("cinemas"),
+                            sqlRowSet.getInt("cinemas_seats")));
+        }
         return null;
     }
 
@@ -153,7 +185,7 @@ public class DbConnection implements IDbRepository {
                     sqlRowSet.getString("movie_description"),
                     sqlRowSet.getInt("price"),
                     sqlRowSet.getInt("age"),
-                    sqlRowSet.getDate("movie_date"),
+                    sqlRowSet.getTimestamp("movie_date"),
                     new Cinema(sqlRowSet.getInt("cinema_id"),
                             sqlRowSet.getString("cinemas"),
                             sqlRowSet.getInt("cinemas_seats"))
