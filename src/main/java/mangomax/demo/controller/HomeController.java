@@ -22,6 +22,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/reservation")
+    public String reservation (@RequestParam("id") int id, Model model){
+        model.addAttribute("movie", connection.getMovieById(id)) ;
+        return "reservation";
+    }
+
 
     @GetMapping("/all-movies")
     public String readAllMovies(Model model){
