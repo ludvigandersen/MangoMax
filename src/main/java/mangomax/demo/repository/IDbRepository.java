@@ -11,6 +11,7 @@ import java.util.List;
 public interface IDbRepository {
     boolean test();
 
+    // TODO: role objekt + getAllRoles and id's
     // USER + role
     void createUser(User user, int roleId);
     List<User> getAllUsers();
@@ -34,7 +35,7 @@ public interface IDbRepository {
 
     // MovieDates
 
-    // Products
+    // Productsuser
     void createProduct(Product product);
     List<Product> getAllProducts();
     Product getProductById(int productId);

@@ -38,19 +38,15 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createUser(User user, int roleId) {
-
-
-        jdbc.update("INSERT INTO mangomax.user (user_id, user_name,user_email," +
-                        "user_phone,user_password,userRole_fk) " +
-                        "VALUES (?,?,?,?,?,?)",
-                user.getUserId(),
-                user.getUserName(),
-                user.getUserMail(),
-                user.getUserPhoneNumber(),
-                user.getUserPassword(),
-                user.getFkRoleId());
-
-
+        jdbc.update("INSERT INTO user (user_name ,user_email, user_phone, user_password, userRole_fk) " +
+                        "VALUES (?,?,?,?,?)",
+                new Object[]{
+                    user.getUserName(),
+                    user.getUserMail(),
+                    user.getUserPhoneNumber(),
+                    user.getUserPassword(),
+                    roleId
+                });
     }
 
     @Override
