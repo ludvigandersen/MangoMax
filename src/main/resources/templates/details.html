@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Detaljer</h1>
+<p th:text="'Film: ' + ${movie.movieName}"/>
+<p th:text="'Beskrivelse: ' + ${movie.movieDescription}"/>
+<p th:text="'Filmen koster ' + ${movie.moviePrice}"/>
+<p th:text="'Filmen kræver at du er mindst  ' + ${movie.movieAgeLimit}"/>
+<p th:text="'Filmen vises i sal ' + ${movie.cinema.cinemaName}"/>
+
+</body>
+</html>

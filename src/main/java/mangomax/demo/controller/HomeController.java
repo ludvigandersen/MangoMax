@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -21,4 +23,11 @@ public class HomeController {
         System.out.println(connection.test());
         return "index";
     }
+
+    @GetMapping("/details")
+    public String details (@RequestParam("id") int id, Model model){
+        model.addAttribute("movie", connection.getMovieById(id)) ;
+        return "details";
+    }
+
 }
