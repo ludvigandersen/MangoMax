@@ -145,7 +145,7 @@ public class DbConnection implements IDbRepository {
     @Override
     public Movie getMovieById(int movieId) {
 
-        sqlRowSet = jdbc.queryForRowSet("SELECT movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
+        sqlRowSet = jdbc.queryForRowSet("SELECT movie_dates.movie_date, movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
                         "FROM movie_dates\n" +
                         "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
                         "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
@@ -159,7 +159,7 @@ public class DbConnection implements IDbRepository {
                     sqlRowSet.getString("movie_description"),
                     sqlRowSet.getInt("price"),
                     sqlRowSet.getInt("age"),
-                    sqlRowSet.getDate("movie_date"),
+                    sqlRowSet.getTimestamp("movie_date"),
                     new Cinema(sqlRowSet.getInt("cinema_id"),
                             sqlRowSet.getString("cinemas"),
                             sqlRowSet.getInt("cinemas_seats")));

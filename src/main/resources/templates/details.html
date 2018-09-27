@@ -11,9 +11,9 @@
 <h1>Detaljer</h1>
 <p th:text="'Film: ' + ${movie.getMovieName()}"/>
 <p th:text="'Beskrivelse: ' + ${movie.getMovieDescription()}"/>
-<p th:text="'Filmen koster ' + ${movie.getMoviePrice()}"/>
-<p th:text="'Filmen kræver at du er mindst  ' + ${movie.getovieAgeLimit()}"/>
-<p th:text="'Filmen vises i sal ' + ${movie.getCinema.getCinemaName()}"/>
+<p th:text="'Filmen koster ' + ${movie.getMoviePrice() + 'kr.'}"/>
+<p th:text="'Filmen kræver at du er mindst  ' + ${movie.getMovieAgeLimit()}"/>
+<p th:text="'Filmen vises i sal ' + ${movie.getCinema().getCinemaName()}"/>
 
 </body>
 </html>
