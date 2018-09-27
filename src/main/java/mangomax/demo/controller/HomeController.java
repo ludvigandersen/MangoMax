@@ -31,6 +31,12 @@ public class HomeController {
         return "all-movies";
     }
 
+    @GetMapping("/reserve-movies")
+    public String reserveMovies(){
+
+        return "reserve-movies";
+    }
+
 
 
     @GetMapping("/details")
