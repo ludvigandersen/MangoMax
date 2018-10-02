@@ -1,5 +1,6 @@
 package mangomax.demo.controller;
 
+import mangomax.demo.model.Movie;
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -19,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index (){
-        return "index";
+        return "redirect:/all-movies";
     }
 
     @GetMapping("/reservation")
@@ -27,7 +30,6 @@ public class HomeController {
         model.addAttribute("movie", connection.getMovieById(id)) ;
         return "reservation";
     }
-
 
     @GetMapping("/all-movies")
     public String readAllMovies(Model model){
@@ -40,8 +42,6 @@ public class HomeController {
         model.addAttribute("movie", connection.getMovieById(id));
         return "reserve-movies";
     }
-
-
 
     @GetMapping("/details")
     public String details (@RequestParam("id") int id, Model model){

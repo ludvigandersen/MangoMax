@@ -1,15 +1,13 @@
 package mangomax.demo.repository;
 
-import mangomax.demo.model.Cinema;
-import mangomax.demo.model.Movie;
-import mangomax.demo.model.Product;
-import mangomax.demo.model.User;
+import mangomax.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -299,4 +297,55 @@ public class DbConnection implements IDbRepository {
     public void deleteProduct(int productId) {
         jdbc.update("DELETE FROM mangomax.products WHERE products_id =?", productId);
     }
+
+    @Override
+    public void createReservation(Reservation reservation) {
+
+    }
+
+    @Override
+    public void updateReservation(int resId, Reservation reservation) {
+
+    }
+
+    @Override
+    public void deleteReservation(int resId) {
+
+    }
+
+    @Override
+    public List<Reservation> getAllReservations() {
+        return null;
+    }
+
+    @Override
+    public Reservation getReservationById(int reservationsId) {
+        return null;
+    }
+
+    @Override
+    public void createOrder(Order order) {
+
+    }
+
+    @Override
+    public void updateOrder(int orderId, Order order) {
+
+    }
+
+    @Override
+    public void deleteOrder(int orderId) {
+
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return null;
+    }
+
+    @Override
+    public Order getOrderById(int orderId) {
+        return null;
+    }
+
 }

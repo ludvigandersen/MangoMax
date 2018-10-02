@@ -1,9 +1,6 @@
 package mangomax.demo.repository;
 
-import mangomax.demo.model.Cinema;
-import mangomax.demo.model.Movie;
-import mangomax.demo.model.Product;
-import mangomax.demo.model.User;
+import mangomax.demo.model.*;
 import org.springframework.security.access.method.P;
 
 import java.util.List;
@@ -44,7 +41,17 @@ public interface  IDbRepository {
     void deleteProduct(int productId);
 
     // Reservations
+    void createReservation (Reservation reservation);
+    void updateReservation (int resId, Reservation reservation);
+    void deleteReservation (int resId);
+    List<Reservation> getAllReservations ();
+    Reservation getReservationById (int reservationsId);
 
     // Orders
-
+    void createOrder (Order order);
+    void updateOrder (int orderId, Order order);
+    void deleteOrder (int orderId);
+    List<Order> getAllOrders();
+    Order getOrderById(int orderId);
+    
 }
