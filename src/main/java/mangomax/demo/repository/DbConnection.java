@@ -135,6 +135,8 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public Cinema getCinemaById(int cinemaId) {
+
+
         return null;
     }
 
@@ -179,9 +181,9 @@ public class DbConnection implements IDbRepository {
     public Movie getMovieById(int movieId) {
 
         sqlRowSet = jdbc.queryForRowSet("SELECT movie_dates.movie_date, movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
-                        "FROM movie_dates\n" +
-                        "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
-                        "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
+                "FROM movie_dates\n" +
+                "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
+                "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
                 "WHERE movie_id=?", movieId);
 
 
@@ -260,11 +262,11 @@ public class DbConnection implements IDbRepository {
         List<Product> productList = new ArrayList<>();
         while (sqlRowSet.next()) {
             productList.add(new Product(
-                            sqlRowSet.getInt("products_id"),
-                            sqlRowSet.getString("products_name"),
-                            sqlRowSet.getInt("products_price"),
-                            sqlRowSet.getString("products_description")
-                    ));
+                    sqlRowSet.getInt("products_id"),
+                    sqlRowSet.getString("products_name"),
+                    sqlRowSet.getInt("products_price"),
+                    sqlRowSet.getString("products_description")
+            ));
         }
         return productList;
     }
@@ -278,7 +280,7 @@ public class DbConnection implements IDbRepository {
                     sqlRowSet.getString("products_name"),
                     sqlRowSet.getInt("products_price"),
                     sqlRowSet.getString("products_description")
-                    );
+            );
         }
         return null;
     }
@@ -300,22 +302,52 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createReservation(Reservation reservation) {
+        jdbc.update("INSERT INTO mangomax.reservations (amount, total_price) VALUES (?,?)",
+                new Object[]{
+                        reservation.getReservationAmount(),
+                        reservation.getReservationTotalPrice()
+                });
 
     }
 
     @Override
     public void updateReservation(int resId, Reservation reservation) {
-
+        jdbc.update("UPDATE mangomax.reservations SET amount=?,total_price=?",
+                new Object[]{
+                        reservation.getReservationAmount(),
+                        reservation.getReservationTotalPrice()
+                });
     }
 
     @Override
     public void deleteReservation(int resId) {
-
+        jdbc.update("DELETE FROM mangomax.reservations WHERE reservation_id=?", resId);
     }
 
     @Override
     public List<Reservation> getAllReservations() {
-        return null;
+        String sql = "SELECT * FROM  mangomax.reservations " +
+                "INNER JOIN movie_dates ON reservations.reservationsMovieDates_fk = movie_dates.movieDates_id" +
+                " INNER JOIN movies  on movie_dates.moviedatesMovies_fk = movies.movie_id " +
+                "INNER JOIN user  on reservations.reservationsUser_fk = user.user_id" +
+                " WHERE reservations.reservationsUser_fk = ?";
+        sqlRowSet = jdbc.queryForRowSet(sql);
+        List<Reservation> rev = new ArrayList<>();
+
+        while (sqlRowSet.next()) {
+            rev.add(new Reservation(
+                    sqlRowSet.getInt("reservation_id"),
+                    sqlRowSet.getInt("amount"),
+                    sqlRowSet.getInt("total_price"),
+                    new Movie(sqlRowSet.getInt("movie_id"), sqlRowSet.getString("movie_name"), sqlRowSet.getString("movie_desciption"),
+                            sqlRowSet.getInt("amount"), sqlRowSet.getInt("moviAgeLimit"),
+                            sqlRowSet.getDate("movie_date"), new Cinema(sqlRowSet.getInt("moviesCinema_fk"),
+                            sqlRowSet.getString("cinemas"), sqlRowSet.getInt("cinemas_seats"))),
+                    new User(sqlRowSet.getInt("user_id"), sqlRowSet.getString("user_name"), sqlRowSet.getString("user_email"),
+                            sqlRowSet.getString("user_phone"), sqlRowSet.getString("user_password"), sqlRowSet.getInt("userRole_fk"))
+                    ));
+        }
+        return rev;
     }
 
     @Override
@@ -325,17 +357,20 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createOrder(Order order) {
-
+        jdbc.update("INSERT INTO mangomax.orders (orders_total, ordersReservation_fk) VALUES (?,?)",
+                new Object[]{
+                        order.getOrderTotal(),
+                        order.getReservation(),
+                });
     }
 
     @Override
     public void updateOrder(int orderId, Order order) {
-
     }
 
     @Override
     public void deleteOrder(int orderId) {
-
+        jdbc.update("DELETE FROM mangomax.orders WHERE mangomax.orders.orders_id=?", orderId);
     }
 
     @Override
