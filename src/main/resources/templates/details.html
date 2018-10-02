@@ -7,14 +7,31 @@
 
 </head>
 <body class="grad">
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container">
+    <h1 th:text="${movie.getMovieName()}"></h1>
 
-<h1>Detaljer</h1>
-
-<p th:text="'Film: ' + ${movie.getMovieName()}"/>
-<p th:text="'Beskrivelse: ' + ${movie.getMovieDescription()}"/>
-<p th:text="'Filmen koster ' + ${movie.getMoviePrice() + 'kr.'}"/>
-<p th:text="'Filmen kræver at du er mindst  ' + ${movie.getMovieAgeLimit()}"/>
-<p th:text="'Filmen vises i sal ' + ${movie.getCinema().getCinemaName()}"/>
-
+    <table class="contenttable">
+        <tr>
+            <td>Film: </td><td th:text="${movie.getMovieName()}"></td>
+        </tr>
+        <tr>
+            <td>Beskrivelse: </td><td th:text="${movie.getMovieDescription()}"></td>
+        </tr>
+        <tr>
+            <td>Pris: </td><td th:text="${movie.getMoviePrice() + ' kr.'}"></td>
+        </tr>
+        <tr>
+            <td>Aldersgrænse: </td><td th:text="${movie.getMovieAgeLimit()}"></td>
+        </tr>
+        <tr>
+            <td>Sal: </td><td th:text="${movie.getCinema().getCinemaName()}"></td>
+        </tr>
+        <tr>
+            <td><a href="reserve-movies.html">Reservér plads</a></td>
+            <!-- TODO: Detaljer skal gå efter movieID -->
+        </tr>
+    </table>
+</div>
 </body>
 </html>

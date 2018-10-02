@@ -68,6 +68,7 @@ public class Movie {
     public Date getMovieDate() {
         return movieDate;
     }
+
     public void setMovieDate(Date movieDate) {
         this.movieDate = movieDate;
     }
