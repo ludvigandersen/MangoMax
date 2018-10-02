@@ -1,6 +1,5 @@
 package mangomax.demo.controller;
 
-import mangomax.demo.model.Movie;
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -29,25 +27,25 @@ public class HomeController {
     @GetMapping("/reservation")
     public String reservation (@RequestParam("id") int id, Model model){
         model.addAttribute("movie", connection.getMovieById(id)) ;
-        return "reservation";
+        return "/reservation";
     }
 
     @GetMapping("/all-movies")
     public String readAllMovies(Model model){
         model.addAttribute("movie_data",connection.getMoviesOneWeekFromNow());
-        return "all-movies";
+        return "/all-movies";
     }
 
     @GetMapping("/reserve-movies")
     public String reserveMovies(){
 
-        return "reserve-movies";
+        return "/reserve-movies";
     }
 
     @GetMapping("/details")
     public String details (@RequestParam("id") int id, Model model){
         model.addAttribute("movie", connection.getMovieById(id)) ;
-        return "details";
+        return "/details";
     }
 
     @GetMapping("/customer/myreservations")
@@ -55,15 +53,24 @@ public class HomeController {
         return "/customer/myreservations";
     }
 
+    @GetMapping("/admin/admin-dashboard")
+    public String adminDashboard(){
+        return "/admin/admin-dashboard";
+    }
+
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "/login";
     }
 
     @GetMapping("/redirect")
     public String redirect(HttpServletRequest request){
         if (request.isUserInRole("CUSTOMER")){
             return "redirect:/customer/myreservations";
+        }
+        if (request.isUserInRole("ADMIN")){
+            System.out.println("admin");
+            return "redirect:/admin/admin-dashboard";
         }
         return "/login";
     }

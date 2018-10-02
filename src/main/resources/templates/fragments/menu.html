@@ -4,8 +4,12 @@
     <span sec:authorize="!isAuthenticated()" style="display: inline-block;" class="text-color right">
         <a href="/login">Login</a>
     </span>
-    <span sec:authorize="isAuthenticated()" style="display: inline-block;" class="text-color right">
+    <span sec:authorize="hasAnyRole('CUSTOMER')" style="display: inline-block;" class="text-color right">
         <a href="/customer/myreservations">Mine reservationer</a>
+        <a th:href="@{/logout}">Log ud</a>
+    </span>
+    <span sec:authorize="hasAnyRole('ADMIN')" style="display: inline-block;" class="text-color right">
+        <a href="/admin/admin-dashboard">Dashboard</a>
         <a th:href="@{/logout}">Log ud</a>
     </span>
 </nav>
