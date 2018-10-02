@@ -21,9 +21,8 @@ public class HomeController {
     PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @GetMapping("/")
-    public String index (Model model){
-        model.addAttribute("movie_data",connection.getMoviesOneWeekFromNow());
-        return "all-movies";
+    public String index (){
+        return "redirect:/all-movies";
     }
 
     @GetMapping("/reservation")
@@ -31,7 +30,6 @@ public class HomeController {
         model.addAttribute("movie", connection.getMovieById(id)) ;
         return "reservation";
     }
-
 
     @GetMapping("/all-movies")
     public String readAllMovies(Model model){
@@ -44,8 +42,6 @@ public class HomeController {
 
         return "reserve-movies";
     }
-
-
 
     @GetMapping("/details")
     public String details (@RequestParam("id") int id, Model model){
