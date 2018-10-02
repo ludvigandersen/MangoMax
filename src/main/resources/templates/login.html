@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body>
-    <form th:action="@{/login}" method="post">
+<body class="grad">
+    <div th:replace="fragments/menu :: menu"></div>
+    <div class="container">
+        <form th:action="@{/login}" method="post">
         <h1>Login</h1>
         <div th:if="${param.error}">
             <div class="alert alert-danger">
@@ -16,7 +21,8 @@
                 Du er blevet logget ud.
             </div>
         </div>
-        <table>
+
+        <table class="contenttable">
             <tr>
                 <td><label for="username">Brugernavn:</label></td>
                 <td><input type="text" id="username" name="username" autofocus="autofocus" placeholder="Brugernavn"></td>
@@ -29,6 +35,7 @@
                 <td><input type="submit" name="login-submit" value="Log Ind"></td>
             </tr>
         </table>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
