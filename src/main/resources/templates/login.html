@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <form th:action="@{/login}" method="post">
+        <h1>Login</h1>
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                Brugernavn eller password er forkert.
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">
+                Du er blevet logget ud.
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td><label for="username">Brugernavn:</label></td>
+                <td><input type="text" id="username" name="username" autofocus="autofocus" placeholder="Brugernavn"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" placeholder="Password"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="login-submit" value="Log Ind"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
