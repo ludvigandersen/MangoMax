@@ -21,8 +21,9 @@ public class HomeController {
     PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @GetMapping("/")
-    public String index (){
-        return "index";
+    public String index (Model model){
+        model.addAttribute("movie_data",connection.getMoviesOneWeekFromNow());
+        return "all-movies";
     }
 
     @GetMapping("/reservation")
