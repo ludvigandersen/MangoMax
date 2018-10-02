@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>reservér film</title>
-    <p1>Reservér Film</p1>
-    <p>Du er ved at reservére til</p>
+    <link rel="stylesheet" href="style.css">
+
 
 </head>
-<body>
+    <body class="grad">
+        <h1>Reservér film</h1>
+        <p th:text="'Du er ved at reservere til filmen ' + ${movie.getMovieName()}"/>
 
-</body>
+        <button></button>
+    </body>
 </html>

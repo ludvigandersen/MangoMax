@@ -36,8 +36,8 @@ public class HomeController {
     }
 
     @GetMapping("/reserve-movies")
-    public String reserveMovies(){
-
+    public String reserveMovies(@RequestParam("id") int id, Model model){
+        model.addAttribute("movie", connection.getMovieById(id));
         return "reserve-movies";
     }
 

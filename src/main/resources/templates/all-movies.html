@@ -29,7 +29,7 @@
                 <td th:text="${movie.movieName}"></td>
                 <td th:text="${movie.movieDate}"></td>
                 <td><a th:href="${'/details?id=' + movie.movieId}">Detaljer</a></td>
-                <td><a href="reserve-movies.html">Reservér plads</a></td>
+                <td><a th:href="${'/reserve-movies?id=' + movie.movieId}">Reservér plads</a></td>
                 <!-- TODO: Detaljer skal gå efter movieID -->
             </tr>
 
