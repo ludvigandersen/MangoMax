@@ -63,7 +63,6 @@ public class HomeController {
     @GetMapping("/redirect")
     public String redirect(HttpServletRequest request){
         if (request.isUserInRole("CUSTOMER")){
-            System.out.println("logged in");
             return "redirect:/customer/myreservations";
         }
         return "/login";
