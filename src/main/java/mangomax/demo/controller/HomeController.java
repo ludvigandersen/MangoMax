@@ -41,6 +41,12 @@ public class HomeController {
         return "/all-movies";
     }
 
+    @GetMapping("/reservations")
+    public String allUserReservations(Model model, int userId) {
+        model.addAttribute("user_reservation", connection.getReservationById(userId));
+        return "/user-reservations";
+    }
+
     @GetMapping("/reserve-movies")
     public String reserveMovies(){
 

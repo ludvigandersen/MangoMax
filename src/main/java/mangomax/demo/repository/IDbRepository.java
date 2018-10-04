@@ -47,6 +47,7 @@ public interface  IDbRepository {
     void updateReservation (int resId, Reservation reservation);
     void deleteReservation (int resId);
     List<Reservation> getAllReservations ();
+    List<Reservation> getAllUserReservations(int userId);
     Reservation getReservationById (int reservationsId);
 
     // Orders
