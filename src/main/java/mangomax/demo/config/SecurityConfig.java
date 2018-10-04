@@ -3,6 +3,7 @@ package mangomax.demo.config;
 import mangomax.demo.web.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,9 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-//        web.ignoring().antMatchers(HttpMethod.POST, "/update");
-//        web.ignoring().antMatchers("/create");
-//        web.ignoring().antMatchers("/delete-product");
+        web.ignoring().antMatchers(HttpMethod.POST, "/admin/addMovieToDate");
     }
 
     @Override
@@ -36,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
+                        // TODO: ændre til 1 x "*" herunder
                         "/**").permitAll()
                 .antMatchers("/customer/**").hasRole("CUSTOMER")
                 .antMatchers("/admin/**").hasRole("ADMIN")

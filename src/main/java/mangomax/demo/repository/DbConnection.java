@@ -6,6 +6,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -173,8 +176,30 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public List<Movie> getAllMovies() {
-
-        return null;
+        String sql = "SELECT * FROM mangomax.movies INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id";
+        sqlRowSet = jdbc.queryForRowSet(sql);
+        List<Movie> movieList = new ArrayList<>();
+        SimpleDateFormat dateformat3 = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        try {
+            date = dateformat3.parse("17/07/1989");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        while (sqlRowSet.next()) {
+            movieList.add(new Movie(
+                    sqlRowSet.getInt("movie_id"),
+                    sqlRowSet.getString("movie_name"),
+                    sqlRowSet.getString("movie_description"),
+                    sqlRowSet.getInt("price"),
+                    sqlRowSet.getInt("age"),
+                    date,
+                    new Cinema(sqlRowSet.getInt("cinema_id"),
+                            sqlRowSet.getString("cinemas"),
+                            sqlRowSet.getInt("cinemas_seats"))
+            ));
+        }
+        return movieList;
     }
 
     @Override
@@ -208,7 +233,8 @@ public class DbConnection implements IDbRepository {
                 "FROM movie_dates\n" +
                 "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
                 "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
-                "WHERE movie_dates.movie_date BETWEEN NOW() AND NOW() + INTERVAL 7 DAY";
+                "WHERE movie_dates.movie_date BETWEEN NOW() AND NOW() + INTERVAL 7 DAY\n" +
+                "ORDER BY movie_dates.movie_date";
         sqlRowSet = jdbc.queryForRowSet(sql);
         List<Movie> movies = new ArrayList<>();
 
@@ -242,6 +268,16 @@ public class DbConnection implements IDbRepository {
     @Override
     public void deleteMovie(int movieId) {
         jdbc.update("DELETE FROM mangomax.movies WHERE mangomax.movies.movie_id=?", movieId);
+    }
+
+    @Override
+    public void addMovieToDate(int movieId, Date date) {
+        System.out.println(jdbc.update("INSERT INTO mangomax.movie_dates (movie_date, moviedatesMovies_fk) VALUES (?,?)",
+                new Object[]{
+                        date,
+                        movieId
+
+                }));
     }
 
     @Override

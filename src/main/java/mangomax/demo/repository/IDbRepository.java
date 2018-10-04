@@ -3,6 +3,7 @@ package mangomax.demo.repository;
 import mangomax.demo.model.*;
 import org.springframework.security.access.method.P;
 
+import java.util.Date;
 import java.util.List;
 
 public interface  IDbRepository {
@@ -32,6 +33,7 @@ public interface  IDbRepository {
     void deleteMovie(int movieId);
 
     // MovieDates
+    void addMovieToDate(int movieId, Date date);
 
     // Productsuser
     void createProduct(Product product);

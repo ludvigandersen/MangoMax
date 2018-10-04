@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+
+
+</head>
+
+<body class = "grad">
+    <div th:replace="fragments/menu :: menu"></div>
+    <div class="container">
+        <h1>Admin dashboard</h1>
+        <p>
+            <a href="/admin/addexistingmovietodate">Tilføj film til ny dag</a>
+        </p>
+        <form action="/admin/addMovieToDate" method="post">
+            <table class="contenttable">
+                <tr>
+                    <th>Vælg film</th>
+                    <th>Vælg dato</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select th:name="movieId">
+                            <option th:each="movie : ${movies}" th:value="${movie.movieId}" th:text="${movie.movieName}"></option>
+                        </select>
+                    </td>
+                    <td><input type="datetime-local" name="date"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

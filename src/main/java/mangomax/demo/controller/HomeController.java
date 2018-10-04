@@ -7,9 +7,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class HomeController {
@@ -55,8 +59,36 @@ public class HomeController {
     }
 
     @GetMapping("/admin/admin-dashboard")
-    public String adminDashboard(){
+    public String adminDashboard(Model model){
+        model.addAttribute("movie_data",connection.getMoviesOneWeekFromNow());
         return "/admin/admin-dashboard";
+    }
+
+    @GetMapping("/admin/updatemovie")
+    public String updatemovie (@RequestParam("id") int id, Model model){
+        model.addAttribute("movie", connection.getMovieById(id)) ;
+        return "/admin/admin-update-movie";
+    }
+
+    @GetMapping("/admin/addexistingmovietodate")
+    public String addExistingMovieToDate(Model model){
+        model.addAttribute("movies", connection.getAllMovies());
+        return "/admin/add-existing-movie-to-date";
+    }
+
+    @PostMapping("/admin/addMovieToDate")
+    public String addMovieToDate(@RequestParam("movieId") int movieId,
+                                 @RequestParam("date") String date){
+        System.out.println(date);
+        SimpleDateFormat dateformat3 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date date1 = new Date();
+        try {
+            date1 = dateformat3.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        connection.addMovieToDate(movieId, date1);
+        return "redirect:/admin/admin-dashboard";
     }
 
     @GetMapping("/login")
