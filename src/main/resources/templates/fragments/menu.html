@@ -1,0 +1,15 @@
+<nav th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a href="/" id="logo">MangoMax</a>
+    <a href="/all-movies">Vis alle film</a>
+    <span sec:authorize="!isAuthenticated()" style="display: inline-block;" class="text-color right">
+        <a href="/login">Login</a>
+    </span>
+    <span sec:authorize="hasAnyRole('CUSTOMER')" style="display: inline-block;" class="text-color right">
+        <a href="/customer/myreservations">Mine reservationer</a>
+        <a th:href="@{/logout}">Log ud</a>
+    </span>
+    <span sec:authorize="hasAnyRole('ADMIN')" style="display: inline-block;" class="text-color right">
+        <a href="/admin/admin-dashboard">Dashboard</a>
+        <a th:href="@{/logout}">Log ud</a>
+    </span>
+</nav>

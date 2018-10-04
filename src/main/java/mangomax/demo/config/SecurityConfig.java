@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/**").permitAll()
                 .antMatchers("/customer/**").hasRole("CUSTOMER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -49,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
                 .exceptionHandling()
@@ -64,8 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // password = $2a$10$GkHRhh4AHWS.WHUzRucUIeBoEmowH7qZ2HLVas544VbXFscstpEE6
         // TODO: Ret SQL
         auth.jdbcAuthentication().dataSource(dataSource)
-                .authoritiesByUsernameQuery("select username, role FROM users where username=?")
-                .usersByUsernameQuery("select username,password as password,1 FROM users where username=?")
+                .authoritiesByUsernameQuery("select user_email, role_name FROM user INNER JOIN role ON role.role_id = user.userRole_fk WHERE user_email=?")
+                .usersByUsernameQuery("SELECT user_email, user_password as password,1 FROM user WHERE user_email=?")
                 .passwordEncoder(passEncoder());
 
     }

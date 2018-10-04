@@ -9,22 +9,17 @@
 </head>
 
 <body class = "grad">
+<div th:replace="fragments/menu :: menu"></div>
 <div class="container">
     <h1>Film i MangoMax</h1>
 
-    <table>
-
-        <thead>
+    <table class="contenttable">
             <tr>
                 <th>Film</th>
                 <th>Dato</th>
                 <th>Detaljer</th>
                 <th>Reservér</th>
             </tr>
-        </thead>
-
-        <tbody>
-
             <tr th:each="movie : ${movie_data}">
                 <td th:text="${movie.movieName}"></td>
                 <td th:text="${movie.movieDate}"></td>
@@ -32,10 +27,6 @@
                 <td><a th:href="${'/reserve-movies?id=' + movie.movieId}">Reservér plads</a></td>
                 <!-- TODO: Detaljer skal gå efter movieID -->
             </tr>
-
-        </tbody>
-
-
     </table>
     </div>
 </body>

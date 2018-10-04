@@ -18,6 +18,9 @@ public class Reservation {
         this.user = user;
     }
 
+    public Reservation() {
+    }
+
     public int getReservationId() {
         return reservationId;
     }

@@ -6,29 +6,30 @@
     <link rel="stylesheet" href="style.css">
 
 
-
 </head>
-    <body class="grad">
-        <h1>Reservér film</h1>
-        <p th:text="'Du er ved at reservere til filmen ' + ${movie.getMovieName()}"/>
-        <p th:text="'Dato: ' + ${movie.movieDate}"></p>
-        <p th:text="'Pris pr. sæde: ' + ${movie.getMoviePrice()}"></p>
+<body class="grad">
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container">
+    <h1>Reservér film</h1>
+    <p th:text="'Du er ved at reservere til filmen ' + ${movie.getMovieName()}"/>
+    <p th:text="'Dato: ' + ${movie.movieDate}"></p>
+    <p th:text="'Pris pr. sæde: ' + ${movie.getMoviePrice()}"></p>
+
+    <form action="/myreservations.html">
+        <select id="amount" name="Sæder">
+            <option th:value="1", th:text="1"></option>
+            <option th:value="2", th:text="2"></option>
+            <option th:value="3", th:text="3"></option>
+            <option th:value="4", th:text="4"></option>
+            <option th:value="5", th:text="5"></option>
+            <option th:value="6", th:text="6"></option>
+            <option th:value="7", th:text="7"></option>
+        </select>
+        <input type="submit">
+    </form>
+</div>
 
 
-        <form action="/myreservations.html">
-            <select name="cars">
-                <option value="1">Volvo</option>
-                <option value="2">Saab</option>
-                <option value="3">Opel</option>
-                <option value="4">Audi</option>
-            </select>
-            <input type="submit">
-        </form>
-
-
-
-
-
-    </body>
+</body>
 
 </html>
