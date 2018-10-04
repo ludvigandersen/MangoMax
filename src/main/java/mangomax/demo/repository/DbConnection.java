@@ -351,7 +351,17 @@ public class DbConnection implements IDbRepository {
     }
 
     @Override
-    public Reservation getReservationById(int reservationsId) {
+    public Reservation getReservationById(int userId) {
+        String sql = "SELECT reservations.amount, reservations.total_price, orders.orders_total, movie_dates.movie_date, movies.movie_name FROM reservations\n" +
+                "INNER JOIN orders ON orders.ordersReservation_fk = reservation_id\n" +
+                "INNER JOIN movie_dates ON movie_dates.movieDates_id = reservationsMovieDates_fk\n" +
+                "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk" +
+                "WHERE user_id=?";
+        sqlRowSet = jdbc.queryForRowSet(sql,userId);
+
+        while (sqlRowSet.next()) {
+      
+        }
         return null;
     }
 
