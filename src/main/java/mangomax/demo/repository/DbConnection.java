@@ -92,6 +92,22 @@ public class DbConnection implements IDbRepository {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        sqlRowSet = jdbc.queryForRowSet("SELECT * FROM user WHERE user_email=?", email);
+
+        while (sqlRowSet.next()) {
+            return new User(
+                    sqlRowSet.getInt("user_id"),
+                    sqlRowSet.getString("user_name"),
+                    sqlRowSet.getString("user_email"),
+                    sqlRowSet.getString("user_phone"),
+                    sqlRowSet.getString("user_password"),
+                    sqlRowSet.getInt("userRole_fk"));
+        }
+        return null;
+    }
+
+    @Override
     public void updateUser(int userId, User user) {
 
         jdbc.update("UPDATE mangomax.user " +
@@ -394,17 +410,31 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public List<Reservation> getAllUserReservations(int userId) {
-        String sql = "SELECT reservations.amount, reservations.total_price, orders.orders_total, movie_dates.movie_date, movies.movie_name FROM reservations\n" +
-                "INNER JOIN orders ON orders.ordersReservation_fk = reservation_id\n" +
+        List<Reservation> reservations = new ArrayList<>();
+        String sql = "SELECT * FROM reservations\n" +
                 "INNER JOIN movie_dates ON movie_dates.movieDates_id = reservationsMovieDates_fk\n" +
-                "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk" +
-                "WHERE user_id=?";
+                "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
+                "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
+                "WHERE reservationsUser_fk=?";
         sqlRowSet = jdbc.queryForRowSet(sql,userId);
 
         while (sqlRowSet.next()) {
-            
+            reservations.add(new Reservation(
+                    sqlRowSet.getInt("reservation_id"),
+                    sqlRowSet.getInt("amount"),
+                    sqlRowSet.getInt("total_price"),
+                    new Movie(
+                            sqlRowSet.getInt("movie_id"),
+                            sqlRowSet.getString("movie_name"),
+                            sqlRowSet.getTimestamp("movie_date"),
+                            new Cinema(
+                                    sqlRowSet.getInt("cinema_id"),
+                                    sqlRowSet.getString("cinemas"),
+                                    sqlRowSet.getInt("cinemas_seats")
+                            ))));
         }
-        return null;
+
+        return reservations;
     }
 
     @Override

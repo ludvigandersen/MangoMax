@@ -43,6 +43,13 @@ public class Movie {
         this.cinema = cinema;
     }
 
+    public Movie(int movieId, String movieName, Date movieDate, Cinema cinema) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.movieDate = movieDate;
+        this.cinema = cinema;
+    }
+
     public int getMovieId() {
         return movieId;
     }

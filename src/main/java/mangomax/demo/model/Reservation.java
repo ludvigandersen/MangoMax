@@ -18,6 +18,12 @@ public class Reservation {
         this.user = user;
     }
 
+    public Reservation(int reservationId, int reservationAmount, int reservationTotalPrice, Movie movie) {
+        this.reservationId = reservationId;
+        this.reservationAmount = reservationAmount;
+        this.reservationTotalPrice = reservationTotalPrice;
+        this.movie = movie;
+    }
 
     public int getReservationId() {
         return reservationId;
