@@ -24,7 +24,7 @@
         <tr th:each="movie : ${movie_data}">
             <td th:text="${movie.movieName}"></td>
             <td th:text="${movie.movieDate}"></td>
-            <td><a th:href="${'/admin/updatemovie?id=' + movie.movieId}">Opdater</a></td>
+            <td><a th:href="${'/admin/deletemovie?id=' + movie.movieDateId}">Slet</a></td>
             <!-- TODO: Detaljer skal gå efter movieID -->
         </tr>
     </table>

@@ -229,7 +229,7 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public List<Movie> getMoviesOneWeekFromNow() {
-        String sql = "SELECT movie_dates.movie_date, movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats\n" +
+        String sql = "SELECT movie_dates.movie_date, movies.movie_id, movies.movie_name, movies.movie_description, movies.price, movies.age, cinemas.cinema_id, cinemas.cinemas, cinemas.cinemas_seats, movie_dates.movieDates_id\n" +
                 "FROM movie_dates\n" +
                 "INNER JOIN movies ON movies.movie_id = movie_dates.moviedatesMovies_fk\n" +
                 "INNER JOIN cinemas ON movies.moviesCinemas_fk = cinemas.cinema_id\n" +
@@ -248,7 +248,8 @@ public class DbConnection implements IDbRepository {
                     sqlRowSet.getTimestamp("movie_date"),
                     new Cinema(sqlRowSet.getInt("cinema_id"),
                             sqlRowSet.getString("cinemas"),
-                            sqlRowSet.getInt("cinemas_seats"))
+                            sqlRowSet.getInt("cinemas_seats")),
+                    sqlRowSet.getInt("movieDates_id")
             ));
         }
         return movies;
@@ -278,6 +279,12 @@ public class DbConnection implements IDbRepository {
                         movieId
 
                 }));
+    }
+
+    @Override
+    public void deleteMovieDate(int movieId) {
+        jdbc.update("DELETE FROM mangomax.movie_dates WHERE mangomax.movie_dates.movieDates_id = ?", movieId);
+
     }
 
     @Override

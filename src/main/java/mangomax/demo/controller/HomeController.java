@@ -70,10 +70,10 @@ public class HomeController {
         return "/admin/admin-dashboard";
     }
 
-    @GetMapping("/admin/updatemovie")
-    public String updatemovie (@RequestParam("id") int id, Model model){
-        model.addAttribute("movie", connection.getMovieById(id)) ;
-        return "/admin/admin-update-movie";
+    @GetMapping("/admin/deletemovie")
+    public String deletemovie(@RequestParam("id") int id){
+        connection.deleteMovieDate(id);
+        return "redirect:/admin/admin-dashboard";
     }
 
     @GetMapping("/admin/addexistingmovietodate")

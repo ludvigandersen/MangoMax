@@ -34,6 +34,7 @@ public interface  IDbRepository {
 
     // MovieDates
     void addMovieToDate(int movieId, Date date);
+    void deleteMovieDate(int movieId);
 
     // Productsuser
     void createProduct(Product product);
