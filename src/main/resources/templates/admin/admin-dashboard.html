@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>Admin dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+
+
 </head>
-<body>
-Admin dashboard
+
+<body class = "grad">
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container">
+    <h1>Admin dashboard</h1>
+    <p>
+        <a href="/admin/addexistingmovietodate">Tilføj film til ny dag</a>
+    </p>
+    <table class="contenttable">
+        <tr>
+            <th>Film</th>
+            <th>Dato</th>
+            <th>Opdater</th>
+        </tr>
+        <tr th:each="movie : ${movie_data}">
+            <td th:text="${movie.movieName}"></td>
+            <td th:text="${movie.movieDate}"></td>
+            <td><a th:href="${'/admin/deletemovie?id=' + movie.movieDateId}">Slet</a></td>
+            <!-- TODO: Detaljer skal gå efter movieID -->
+        </tr>
+    </table>
+</div>
 </body>
+
 </html>

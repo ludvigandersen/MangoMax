@@ -15,6 +15,18 @@ public class Movie {
     private int movieAgeLimit;
     private Date movieDate;
     private Cinema cinema;
+    private int movieDateId;
+
+    public Movie(int movieId, String movieName, String movieDescription, int moviePrice, int movieAgeLimit, Date movieDate, Cinema cinema, int movieDateId) {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.movieDescription = movieDescription;
+        this.moviePrice = moviePrice;
+        this.movieAgeLimit = movieAgeLimit;
+        this.movieDate = movieDate;
+        this.cinema = cinema;
+        this.movieDateId = movieDateId;
+    }
 
     public Movie(int movieId, String movieName, String movieDescription, int moviePrice, int movieAgeLimit, Date movieDate, Cinema cinema) {
         this.movieId = movieId;
@@ -84,7 +96,12 @@ public class Movie {
         this.movieDate = movieDate;
     }
 
-    public int getMovieDatesId() {
-        return movieDatesId;
+    public int getMovieDateId() {
+        return movieDateId;
+    }
+
+    public void setMovieDateId(int movieDateId) {
+        this.movieDateId = movieDateId;
+
     }
 }

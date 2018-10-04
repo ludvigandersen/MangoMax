@@ -15,17 +15,13 @@
     <p th:text="'Dato: ' + ${movie.movieDate}"></p>
     <p th:text="'Pris pr. sæde: ' + ${movie.getMoviePrice()}"></p>
 
-    <form action="/myreservations.html">
-        <select id="amount" name="Sæder">
-            <option th:value="1", th:text="1"></option>
-            <option th:value="2", th:text="2"></option>
-            <option th:value="3", th:text="3"></option>
-            <option th:value="4", th:text="4"></option>
-            <option th:value="5", th:text="5"></option>
-            <option th:value="6", th:text="6"></option>
-            <option th:value="7", th:text="7"></option>
-        </select>
-        <input type="submit">
+    <form action="/create-reservation-post" method="post">
+        <input type="hidden" name="reservationId">
+        <input type="number" id="amount" name="reservationAmount">
+        <input type="hidden" name="reservationTotalPrice">
+        <input type="hidden" name="movieDateId">
+        <input type="hidden" name="userId">
+        <input type="submit" value="reservér">
     </form>
 </div>
 

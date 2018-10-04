@@ -1,6 +1,7 @@
 package mangomax.demo.controller;
 
 import mangomax.demo.model.Reservation;
+import mangomax.demo.model.User;
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.security.Security;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 public class HomeController {
@@ -37,10 +44,17 @@ public class HomeController {
         return "/reservation";
     }
 
+
+    @GetMapping("/reserve-movies")
+    public String reserveMovies(@RequestParam("id") int id, Model model) {
+        model.addAttribute("movie", connection.getMovieById(id));
+        return "reserve-movies";
+    }
+
     @PostMapping("/create-reservation-post")
-    public String createReservation(@ModelAttribute Reservation reservation){
+    public String reserveMovies(@ModelAttribute Reservation reservation){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
+
         //TODO: skal tage fat i ID og ikke navn
         connection.createReservation(reservation);
 
@@ -53,10 +67,10 @@ public class HomeController {
         return "/all-movies";
     }
 
-    @GetMapping("/reserve-movies")
-    public String reserveMovies(@RequestParam("id") int id, Model model) {
-        model.addAttribute("movie", connection.getMovieById(id));
-        return "reserve-movies";
+    @GetMapping("/reservations")
+    public String allUserReservations(Model model, int userId) {
+        model.addAttribute("user_reservation", connection.getReservationById(userId));
+        return "/user-reservations";
     }
 
     @GetMapping("/details")
@@ -71,8 +85,36 @@ public class HomeController {
     }
 
     @GetMapping("/admin/admin-dashboard")
-    public String adminDashboard(){
+    public String adminDashboard(Model model){
+        model.addAttribute("movie_data",connection.getMoviesOneWeekFromNow());
         return "/admin/admin-dashboard";
+    }
+
+    @GetMapping("/admin/deletemovie")
+    public String deletemovie(@RequestParam("id") int id){
+        connection.deleteMovieDate(id);
+        return "redirect:/admin/admin-dashboard";
+    }
+
+    @GetMapping("/admin/addexistingmovietodate")
+    public String addExistingMovieToDate(Model model){
+        model.addAttribute("movies", connection.getAllMovies());
+        return "/admin/add-existing-movie-to-date";
+    }
+
+    @PostMapping("/admin/addMovieToDate")
+    public String addMovieToDate(@RequestParam("movieId") int movieId,
+                                 @RequestParam("date") String date){
+        System.out.println(date);
+        SimpleDateFormat dateformat3 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date date1 = new Date();
+        try {
+            date1 = dateformat3.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        connection.addMovieToDate(movieId, date1);
+        return "redirect:/admin/admin-dashboard";
     }
 
     @GetMapping("/login")
