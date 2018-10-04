@@ -138,7 +138,7 @@ public class DbConnection implements IDbRepository {
             cinemaList.add(new Cinema(
                     sqlRowSet.getInt("cinema_id"),
                     sqlRowSet.getString("cinemas"),
-                    sqlRowSet.getInt("cinema_seats")
+                    sqlRowSet.getInt("cinemas_seats")
             ));
         }
         return cinemaList;
@@ -174,7 +174,6 @@ public class DbConnection implements IDbRepository {
                 new Object[]{
                         movie.getMovieName(),
                         movie.getMovieDescription(),
-                        movie.getMoviePrice(),
                         movie.getMoviePrice(),
                         movie.getMovieAgeLimit(),
                         movie.getCinema().getCinemaId(),

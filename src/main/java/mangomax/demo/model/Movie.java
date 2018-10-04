@@ -46,6 +46,14 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(String movieName, String movieDescription, int moviePrice, int movieAgeLimit, Cinema cinema) {
+        this.movieName = movieName;
+        this.movieDescription = movieDescription;
+        this.moviePrice = moviePrice;
+        this.movieAgeLimit = movieAgeLimit;
+        this.cinema = cinema;
+    }
+
     public int getMovieId() {
         return movieId;
     }
