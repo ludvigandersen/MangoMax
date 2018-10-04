@@ -1,5 +1,7 @@
 package mangomax.demo.controller;
 
+import mangomax.demo.model.Cinema;
+import mangomax.demo.model.Movie;
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -94,6 +96,23 @@ public class HomeController {
             e.printStackTrace();
         }
         connection.addMovieToDate(movieId, date1);
+        return "redirect:/admin/admin-dashboard";
+    }
+
+    @GetMapping("/admin/addNewMovie")
+    public String addNewMovie(Model model){
+        model.addAttribute("cinemas", connection.getAllCinemas());
+        return "/admin/admin-add-movie";
+    }
+
+    @PostMapping("/admin/addMovie")
+    public String addMovie(@RequestParam("name") String name,
+                           @RequestParam("description") String description,
+                           @RequestParam("price") String price,
+                           @RequestParam("age") String age,
+                           @RequestParam("cinema") int cinema){
+        Movie movie = new Movie(name, description, Integer.parseInt(price), Integer.parseInt(age), new Cinema(cinema, "", 0));
+        connection.createMovie(movie);
         return "redirect:/admin/admin-dashboard";
     }
 
