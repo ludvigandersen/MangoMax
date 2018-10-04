@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -29,6 +30,13 @@ public class HomeController {
     public String reservation (@RequestParam("id") int id, Model model){
         model.addAttribute("movie", connection.getMovieById(id)) ;
         return "reservation";
+    }
+
+    @PostMapping("/create-reservation-post")
+    public String createReservation(){
+
+
+        return "redirect/customer/myreservations";
     }
 
     @GetMapping("/all-movies")

@@ -6,11 +6,29 @@
     <link rel="stylesheet" href="style.css">
 
 
+
 </head>
     <body class="grad">
         <h1>Reservér film</h1>
         <p th:text="'Du er ved at reservere til filmen ' + ${movie.getMovieName()}"/>
+        <p th:text="'Dato: ' + ${movie.movieDate}"></p>
+        <p th:text="'Pris pr. sæde: ' + ${movie.getMoviePrice()}"></p>
 
-        <button></button>
+
+        <form action="/myreservations.html">
+            <select name="cars">
+                <option value="1">Volvo</option>
+                <option value="2">Saab</option>
+                <option value="3">Opel</option>
+                <option value="4">Audi</option>
+            </select>
+            <input type="submit">
+        </form>
+
+
+
+
+
     </body>
+
 </html>

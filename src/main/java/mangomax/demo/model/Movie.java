@@ -6,7 +6,10 @@ import java.util.Date;
 public class Movie {
 
     private int movieId;
+    private int movieDatesId;
+
     private String movieName;
+
     private String movieDescription;
     private int moviePrice;
     private int movieAgeLimit;
@@ -21,54 +24,67 @@ public class Movie {
         this.movieAgeLimit = movieAgeLimit;
         this.movieDate = movieDate;
         this.cinema = cinema;
+
+    }
+
+    public Movie(int movieDatesId) {
+        this.movieDatesId = movieDatesId;
+    }
+
+    public Movie() {
     }
 
     public int getMovieId() {
         return movieId;
     }
+
     public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
-
     public String getMovieName() {
         return movieName;
     }
+
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-
     public String getMovieDescription() {
         return movieDescription;
     }
+
     public void setMovieDescription(String movieDescription) {
         this.movieDescription = movieDescription;
     }
-
     public int getMoviePrice() {
         return moviePrice;
     }
+
     public void setMoviePrice(int moviePrice) {
         this.moviePrice = moviePrice;
     }
-
     public int getMovieAgeLimit() {
         return movieAgeLimit;
     }
+
     public void setMovieAgeLimit(int movieAgeLimit) {
         this.movieAgeLimit = movieAgeLimit;
     }
-
     public Cinema getCinema() {
         return cinema;
     }
+
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
-
     public Date getMovieDate() {
         return movieDate;
     }
+
     public void setMovieDate(Date movieDate) {
         this.movieDate = movieDate;
+    }
+
+    public int getMovieDatesId() {
+        return movieDatesId;
     }
 }

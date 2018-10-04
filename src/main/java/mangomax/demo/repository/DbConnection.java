@@ -301,6 +301,22 @@ public class DbConnection implements IDbRepository {
     @Override
     public void createReservation(Reservation reservation) {
 
+        User user = new User();
+        Movie movie = new Movie();
+
+        String sql = "INSERT INTO reservations(reservation_id, amount, total_price, reservationsMovieDates_fk, reservationsUser_fk) " +
+                "VALUES(DEFAULT , ?, ?, ?, ?)";
+
+        jdbc.update(sql,
+                new Object[]{
+                reservation.getReservationId(),
+                reservation.getReservationAmount(),
+                reservation.getReservationTotalPrice(),
+                movie.getMovieDatesId(),
+                user.getUserId()
+
+        });
+
     }
 
     @Override
