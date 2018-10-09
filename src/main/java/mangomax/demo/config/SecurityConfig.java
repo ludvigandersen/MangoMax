@@ -26,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers(HttpMethod.POST, "/admin/addMovieToDate");
         web.ignoring().antMatchers(HttpMethod.POST, "/admin/addMovie");
         web.ignoring().antMatchers(HttpMethod.POST, "/create-reservation-post");
-
     }
 
     @Override
@@ -38,7 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
-                        // TODO: ændre til 1 x "*" herunder
                         "/**").permitAll()
                 .antMatchers("/customer/**").hasRole("CUSTOMER")
                 .antMatchers("/admin/**").hasRole("ADMIN")

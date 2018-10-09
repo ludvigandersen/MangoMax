@@ -28,8 +28,7 @@
             <td>Sal: </td><td th:text="${movie.getCinema().getCinemaName()}"></td>
         </tr>
         <tr>
-            <td><a href="reserve-movies.html">Reservér plads</a></td>
-            <!-- TODO: Detaljer skal gå efter movieID -->
+            <td><a th:href="${'/customer/reserve-movies?id=' + movie.movieId}">Reservér plads</a></td>
         </tr>
     </table>
 </div>

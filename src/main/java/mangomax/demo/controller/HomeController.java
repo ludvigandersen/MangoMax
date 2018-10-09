@@ -1,15 +1,11 @@
 package mangomax.demo.controller;
 
-
 import mangomax.demo.model.Reservation;
 import mangomax.demo.model.User;
 
 import mangomax.demo.model.Cinema;
 import mangomax.demo.model.Movie;
 
-
-
-import mangomax.demo.model.User;
 
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.security.Security;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 @Controller
 public class HomeController {
-
 
     @Autowired
     IDbRepository connection;
@@ -47,20 +39,13 @@ public class HomeController {
         return "redirect:/all-movies";
     }
 
-    @GetMapping("/reservation")
-    public String reservation (@RequestParam("id") int id, Model model){
-        model.addAttribute("movie", connection.getMovieById(id)) ;
-        return "/reservation";
-    }
-
-
-    @GetMapping("/reserve-movies")
+    @GetMapping("/customer/reserve-movies")
     public String reserveMovies(@RequestParam("id") int id, Model model) {
         model.addAttribute("movie", connection.getMovieById(id));
-        return "reserve-movies";
+        return "/customer/reserve-movies";
     }
 
-    @PostMapping("/create-reservation-post")
+    @PostMapping("/customer/create-reservation-post")
     public String reserveMovies(@ModelAttribute Reservation reservation){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
@@ -68,7 +53,7 @@ public class HomeController {
         //TODO: skal tage fat i ID og ikke navn
         connection.createReservation(reservation);
 
-        return "redirect/reserve-movies";
+        return "/customer/reserve-movies";
     }
 
     @GetMapping("/all-movies")
@@ -77,15 +62,10 @@ public class HomeController {
         return "/all-movies";
     }
 
-    @GetMapping("/reservations")
-    public String allUserReservations(Model model, int userId) {
-        model.addAttribute("user_reservation", connection.getReservationById(userId));
-        return "/user-reservations";
-    }
-
     @GetMapping("/details")
     public String details (@RequestParam("id") int id, Model model){
-        model.addAttribute("movie", connection.getMovieById(id)) ;
+        model.addAttribute("movie", connection.getMovieById(id));
+        model.addAttribute("id", id);
         return "/details";
     }
 

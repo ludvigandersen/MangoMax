@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>reservér film</title>
-    <link rel="stylesheet" href="style.css">
-
-
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body class="grad">
 <div th:replace="fragments/menu :: menu"></div>
@@ -16,16 +14,11 @@
     <p th:text="'Pris pr. sæde: ' + ${movie.getMoviePrice()}"></p>
 
     <form action="/create-reservation-post" method="post">
-        <input type="hidden" name="reservationId">
         <input type="number" id="amount" name="reservationAmount">
         <input type="hidden" name="reservationTotalPrice">
-        <input type="hidden" name="movieDateId">
-        <input type="hidden" name="userId">
+        <input type="hidden" name="movieDateId" value="">
         <input type="submit" value="reservér">
     </form>
 </div>
-
-
 </body>
-
 </html>
