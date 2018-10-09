@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>My reservations</title>
-</head>
-<body>
+    <title>Mine reservationer</title>
+    <link rel="stylesheet" href="../style.css">
 
+
+</head>
+
+<body class = "grad">
+<div th:replace="fragments/menu :: menu"></div>
+<div class="container">
+    <h1>Mine reservationer</h1>
+
+    <table class="contenttable">
+        <tr>
+            <th>Antal</th>
+            <th>Film</th>
+            <th>Dato</th>
+            <th>Sal</th>
+            <th>Detaljer</th>
+        </tr>
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.reservationAmount}"></td>
+            <td th:text="${reservation.movie.movieName}"></td>
+            <td th:text="${reservation.movie.movieDate}"></td>
+            <td th:text="${reservation.movie.cinema.cinemaName}"></td>
+            <td><a th:href="${'/details?id=' + reservation.movie.movieId}">Detaljer</a></td>
+            <!-- TODO: Detaljer skal gå efter movieID -->
+        </tr>
+    </table>
+</div>
 </body>
+
 </html>

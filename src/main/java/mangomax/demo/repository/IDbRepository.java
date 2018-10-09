@@ -14,6 +14,7 @@ public interface  IDbRepository {
     void createUser(User user, int roleId);
     List<User> getAllUsers();
     User getUserById(int userId);
+    User getUserByEmail(String email);
     void updateUser(int userId, User user);
     void deleteUser(int userId);
     int getUserId(String name);

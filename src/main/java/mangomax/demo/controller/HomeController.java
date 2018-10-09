@@ -6,7 +6,11 @@ import mangomax.demo.model.User;
 
 import mangomax.demo.model.Cinema;
 import mangomax.demo.model.Movie;
+<<<<<<< HEAD
 
+=======
+import mangomax.demo.model.User;
+>>>>>>> a56ae8042730e47f808aff9bfe2ef5ef8b316368
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -86,8 +90,16 @@ public class HomeController {
     }
 
     @GetMapping("/customer/myreservations")
-    public String myReservations(){
-        return "/customer/myreservations";
+    public String myReservations(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user;
+        if (!name.equals("anonymousUser")) {
+            user = connection.getUserByEmail(name);
+            model.addAttribute("reservations",connection.getAllUserReservations(user.getUserId()));
+            return "/customer/myreservations";
+        }
+        return "redirect:/login";
     }
 
     @GetMapping("/admin/admin-dashboard")
