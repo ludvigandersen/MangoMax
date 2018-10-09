@@ -25,6 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(HttpMethod.POST, "/admin/addMovieToDate");
         web.ignoring().antMatchers(HttpMethod.POST, "/admin/addMovie");
+        web.ignoring().antMatchers(HttpMethod.POST, "/create-reservation-post");
+
     }
 
     @Override

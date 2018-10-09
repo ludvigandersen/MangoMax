@@ -5,7 +5,6 @@ public class Reservation {
     private int reservationId;
     private int reservationAmount;
     private int reservationTotalPrice;
-
     private Movie movie;
     private User user;
 
@@ -38,6 +37,8 @@ public class Reservation {
     }
 
     public int getReservationTotalPrice() {
+
+
         return reservationTotalPrice;
     }
 

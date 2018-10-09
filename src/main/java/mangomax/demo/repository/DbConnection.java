@@ -117,6 +117,10 @@ public class DbConnection implements IDbRepository {
         String sql = "SELECT user_id FROM mangomax.user WHERE user_name=?";
         sqlRowSet = jdbc.queryForRowSet(sql, name);
 
+        while (sqlRowSet.next()){
+            return sqlRowSet.getInt("user_id");
+        }
+
         return 0;
     }
 
@@ -352,19 +356,17 @@ public class DbConnection implements IDbRepository {
 
     @Override
     public void createReservation(Reservation reservation) {
-        User user = new User();
-        Movie movie = new Movie();
-
         String sql = "INSERT INTO reservations(reservation_id, amount, total_price, reservationsMovieDates_fk, reservationsUser_fk) " +
                 "VALUES(DEFAULT , ?, ?, ?, ?)";
 
+        int total = reservation.getReservationAmount()*reservation.getMovie().getMoviePrice();
         jdbc.update(sql,
                 new Object[]{
                 reservation.getReservationId(),
                 reservation.getReservationAmount(),
-                reservation.getReservationTotalPrice(),
-                movie.getMovieDateId(),
-                user.getUserId()
+                total,
+                reservation.getMovie().getMovieDateId(),
+                reservation.getUser().getUserId(),
 
         });
 

@@ -1,12 +1,12 @@
 package mangomax.demo.controller;
 
-<<<<<<< HEAD
+
 import mangomax.demo.model.Reservation;
 import mangomax.demo.model.User;
-=======
+
 import mangomax.demo.model.Cinema;
 import mangomax.demo.model.Movie;
->>>>>>> b1f5bc15eb5c03d37d92746a256872a9c7a8a7f6
+
 import mangomax.demo.repository.IDbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -59,11 +59,12 @@ public class HomeController {
     @PostMapping("/create-reservation-post")
     public String reserveMovies(@ModelAttribute Reservation reservation){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
 
         //TODO: skal tage fat i ID og ikke navn
         connection.createReservation(reservation);
 
-        return "redirect/customer/myreservations";
+        return "redirect/reserve-movies";
     }
 
     @GetMapping("/all-movies")
