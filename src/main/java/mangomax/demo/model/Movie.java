@@ -1,6 +1,5 @@
 package mangomax.demo.model;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Movie {
